@@ -1,0 +1,14 @@
+name: m1
+channels:
+  # - pytorch
+  - conda-forge
+dependencies:
+  - python=3.10.*
+  - conda-lock
+  - mamba
+  - pip
+  # - pytorch::pytorch=1.11.0
+
+# Non-standard section listing target platforms for conda-lock:
+platforms:
+  - linux-64

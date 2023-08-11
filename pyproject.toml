@@ -1,0 +1,27 @@
+[tool.poetry]
+name = "malicious-code-detection"
+version = "0.1.0"
+description = ""
+authors = ["Truong Hoang <truong173@outlook.com>"]
+license = "MIT"
+readme = "README.md"
+packages = [{include = "malicious_code_detection"}]
+
+[tool.poetry.dependencies]
+python = "~3.10"
+slimit = "^0.8.1"
+sklearn = "^0.0.post7"
+matplotlib = "^3.7.2"
+seaborn = "^0.12.2"
+numpy = "^1.25.2"
+pandas = "^2.0.3"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^7.4.0"
+black = "^23.7.0"
+ruff = "^0.0.284"
+pytest-cov = "^4.1.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

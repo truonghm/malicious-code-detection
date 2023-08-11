@@ -6,12 +6,14 @@ if [[ "$1" == "--redownload" || ! -d "data/set2" ]]; then
 
     mv JavaScript_Datasets set2
 
-    cd set2
     mkdir all
-    cp -r badjs all
-    cp -r goodjs all
 
-    find . -maxdepth 1 -mindepth 1 -type d ! -name all -exec rm -rf {} \;
+    cp -r set2/badjs all
+    cp -r set2/goodjs all
+
+    cd set2
+
+    find . -maxdepth 1 -mindepth 1 -type d ! -name badjs ! -name goodjs -exec rm -rf {} \;
     find . -maxdepth 1 -type f -exec rm -f {} \;
 
     echo "set2 data downloaded successfully!"

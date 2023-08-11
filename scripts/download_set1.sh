@@ -13,9 +13,10 @@ if [[ "$1" == "--redownload" || ! -d "data/set1" ]]; then
 	find . -maxdepth 1 -type f -exec rm -f {} \;
 	find . -maxdepth 1 -mindepth 1 -type d ! -name test ! -name train -exec rm -rf {} \;
 
+	cd ..
 	mkdir all
-	cp -r test/* all
-	cp -r train/* all
+	cp -r set1/test/* all
+	cp -r set1/train/* all
 
 	echo "set1 data downloaded successfully!"
 else

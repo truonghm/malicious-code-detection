@@ -19,3 +19,15 @@ env:
 env-reset:
 	rm -rf $(CONDA_ENV_PATH)
 	make env
+
+format:
+	black src --config pyproject.toml
+	ruff src --fix --config pyproject.toml
+
+## Run checks (ruff + test)
+check:
+	ruff check src --config pyproject.toml
+	black --check src --config pyproject.toml
+
+type:
+	mypy src --config-file pyproject.toml

@@ -19,6 +19,8 @@ tree:
 env: 
 	source $(CONDA_HOME_PATH)/bin/activate; conda create -p $(CONDA_ENV_PATH) --no-default-packages --no-deps python=3.10 -y; conda env update -p $(CONDA_ENV_PATH) --file environment.yml
 
+bootstrap:
+	./scripts/vastai_bootstrap.sh
 ## Remove old conda env and create a new one
 env-reset:
 	rm -rf $(CONDA_ENV_PATH)

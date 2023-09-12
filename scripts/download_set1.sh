@@ -10,13 +10,11 @@ if [[ "$1" == "--redownload" || ! -d "data/set1" ]]; then
 	mv TestingSet test
 	mv TrainingSet train
 
-	find . -maxdepth 1 -type f -exec rm -f {} \;
-	find . -maxdepth 1 -mindepth 1 -type d ! -name test ! -name train -exec rm -rf {} \;
-
 	cd ..
 	mkdir all
-	cp -r set1/test/* all
-	cp -r set1/train/* all
+	cp -r set1/test/* all/misc
+	cp -r set1/train/* all/misc
+	rm -rf set1
 
 	echo "set1 data downloaded successfully!"
 else

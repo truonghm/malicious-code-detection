@@ -8,13 +8,10 @@ if [[ "$1" == "--redownload" || ! -d "data/set2" ]]; then
 
     mkdir all
 
-    cp -r set2/badjs all
-    cp -r set2/goodjs all
+    cp -r set2/badjs all/misc2/badjs
+    cp -r set2/goodjs all/misc2/goodjs
 
-    cd set2
-
-    find . -maxdepth 1 -mindepth 1 -type d ! -name badjs ! -name goodjs -exec rm -rf {} \;
-    find . -maxdepth 1 -type f -exec rm -f {} \;
+    rm -rf set2
 
     echo "set2 data downloaded successfully!"
 else

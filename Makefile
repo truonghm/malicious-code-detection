@@ -5,22 +5,22 @@ CONDA_HOME_PATH=$(HOME)/miniconda3
 
 ## Download data for training
 download:
-	./scripts/download_set1.sh
-	./scripts/download_set2.sh
+	./scripts/utils/download_set1.sh
+	./scripts/utils/download_set2.sh
 
 count:
-	./scripts/count_data.sh
+	./scripts/utils/count_data.sh
 
 ## Generate tree of data folder
 tree:
-	./scripts/gen_tree.sh data
+	./scripts/utils/gen_tree.sh data
 
 ## Create conda env (python 3.10) using environment.yml
 env: 
 	source $(CONDA_HOME_PATH)/bin/activate; conda create -p $(CONDA_ENV_PATH) --no-default-packages --no-deps python=3.10 -y; conda env update -p $(CONDA_ENV_PATH) --file environment.yml
 
 bootstrap:
-	./scripts/vastai_bootstrap.sh
+	./scripts/utils/vastai_bootstrap.sh
 ## Remove old conda env and create a new one
 env-reset:
 	rm -rf $(CONDA_ENV_PATH)
@@ -47,7 +47,7 @@ check-all:
 
 ## crawl urls from the kaggle dataset
 crawl:
-	export PYTHONPATH=$(shell pwd) && python crawler/crawl_kaggle_dataset.py --skip=108201 --limit=700000 --input=data/malicious_phish.csv --output=data/all/kaggle1 --super_label=goodjs
+	export PYTHONPATH=$(shell pwd) && python scripts/crawler/crawl_kaggle_dataset.py --skip=108201 --limit=700000 --input=data/malicious_phish.csv --output=data/all/kaggle1 --super_label=goodjs
 
 ## render report
 render:

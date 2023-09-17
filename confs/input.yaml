@@ -1,0 +1,37 @@
+input:
+  kaggle1:
+    path: data/all/kaggle1
+    classes:
+      goodjs:
+        dist: 0.1
+  kaggle2:
+    path: data/all/kaggle2
+    classes:
+      badjs:
+        dist: 0.1
+  misc1:
+    path: data/all/misc1
+    classes:
+      goodjs:
+        dist: 0.7
+      badjs:
+        dist: 0.6
+  misc2:
+    path: data/all/misc2
+    classes:
+      goodjs:
+        dist: 0.5
+      badjs:
+        dist: 0.6
+  misc3:
+    path: data/all/misc3
+    classes:
+      badjs:
+        dist: 0.1
+  packt:
+    path: data/all/packt
+    classes:
+      goodjs:
+        dist: 0.7
+      badjs:
+        dist: 0.6

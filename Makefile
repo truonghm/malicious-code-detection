@@ -18,13 +18,26 @@ tree:
 ## Create conda env (python 3.10) using environment.yml
 env: 
 	source $(CONDA_HOME_PATH)/bin/activate; conda create -p $(CONDA_ENV_PATH) --no-default-packages --no-deps python=3.10 -y; conda env update -p $(CONDA_ENV_PATH) --file environment.yml
+	touch .conda/.gitignore
+	echo "*" > .conda/.gitignore
 
 bootstrap:
-	./scripts/utils/vastai_bootstrap.sh
+	source ./scripts/utils/vastai_bootstrap.sh
 ## Remove old conda env and create a new one
 env-reset:
 	rm -rf $(CONDA_ENV_PATH)
 	make env
+
+split:
+	python scripts/split_train_test.py --input=data/all/kaggle1,data/all/misc2,data/all/packt --output=data/exp --sample-size=0.2 --train-size=0.8
+	PYTHONPATH=$(shell pwd) python scripts/create_train_input.py
+
+tokenize:
+	PYTHONPATH=$(shell pwd) python scripts/tokenize_corpus.py --input=data/exp/train_set.csv --output=data/exp
+	PYTHONPATH=$(shell pwd) python scripts/tokenize_corpus.py --input=data/exp/test_set.csv --output=data/exp
+
+fasttext:
+	PYTHONPATH=$(shell pwd) python scripts/build_fasttext_model.py --input=data/exp/train_set_token_types_corpus.txt --model-dir=models/fasttext_embeddings.bin --no-hierarchical-softmax
 
 PATH_TO_CHECK=./lib/* ./crawler/*
 ## Format files using black, using pre-commit hooks
@@ -47,7 +60,7 @@ check-all:
 
 ## crawl urls from the kaggle dataset
 crawl:
-	export PYTHONPATH=$(shell pwd) && python scripts/crawler/crawl_kaggle_dataset.py --skip=108201 --limit=700000 --input=data/malicious_phish.csv --output=data/all/kaggle1 --super_label=goodjs
+	export PYTHONPATH=$(shell pwd) && python scripts/utils/crawl_kaggle_dataset.py --skip=108201 --limit=700000 --input=data/malicious_phish.csv --output=data/all/kaggle1 --super_label=goodjs
 
 ## render report
 render:

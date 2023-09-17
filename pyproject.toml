@@ -33,6 +33,12 @@ dask = {extras = ["complete"], version = "^2023.9.1"}
 numba = "~0.56.0"
 dask-ml = "^2023.3.24"
 fasttext = {git = "https://github.com/cfculhane/fastText", rev = "main"}
+pytorch-lightning = "^2.0.8"
+torchmetrics = "^1.1.2"
+tensorboard = "^2.14.0"
+transformers = {extras = ["torch"], version = "^4.33.1"}
+accelerate = "^0.23.0"
+datasets = "^2.14.5"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^7.4.0"

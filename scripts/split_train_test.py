@@ -79,17 +79,26 @@ def main():
         all_files, labels, train_size=args.train_size, stratify=labels, random_state=42
     )
 
+    X_train, X_val, y_train, y_val = train_test_split(
+        X_train, y_train, train_size=args.train_size, stratify=y_train, random_state=42
+    )
+
     output_dir = args.output
 
     train = pd.DataFrame({"file": X_train, "label": y_train})
     test = pd.DataFrame({"file": X_test, "label": y_test})
+    val = pd.DataFrame({"file": X_val, "label": y_val})
     train_path = os.path.join(output_dir, TRAIN_SET)
     test_path = os.path.join(output_dir, TEST_SET)
+    val_path = os.path.join(output_dir, "valid_set.csv")
 
     train.to_csv(train_path, index=False)
     test.to_csv(test_path, index=False)
+    val.to_csv(val_path, index=False)
     print(f"Train set size    : {len(train)}")
     print(f"Test set size     : {len(test)}")
+    print(f"Val set size      : {len(val)}")
+
     print(f"Output            : [{train_path}, {test_path}]")
 
 

@@ -16,9 +16,27 @@ if __name__ == "__main__":
 
     logger.info("Training word vectors...")
     if hs:
-        model = fasttext.train_unsupervised(text_path, model="skipgram", loss="hs")
+        model = fasttext.train_unsupervised(text_path, model="cbow", loss="hs")
         model.save_model(model_path)
 
     else:
-        model = fasttext.train_unsupervised(text_path, model="skipgram")
+        model = fasttext.train_unsupervised(text_path, model="cbow")
         model.save_model(model_path)
+
+    vec_path = model_path.replace(".bin", "") + ".vec"
+    # model.wv.save_word2vec_format(vec_path)
+    words = model.get_words()
+    with open(vec_path, "w") as vec_out:
+        vec_out.write(str(len(words)) + " " + str(model.get_dimension()) + "\n")
+
+        for w in words:
+            v = model.get_word_vector(w)
+            v_str = ""
+            for vi in v:
+                v_str += " " + str(vi)
+
+            try:
+                vec_out.write(w + v_str + "\n")
+            except Exception as e:
+                logger.error(e)
+                continue

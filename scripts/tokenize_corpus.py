@@ -12,7 +12,7 @@ from tqdm import tqdm
 warnings.filterwarnings("ignore")
 
 
-def tokenize(snippet: str, label) -> List[Tuple[Any, Any]]:
+def tokenize(snippet: str) -> List[Tuple[Any, Any]]:
     token_types = []
     tokens = []
     try:
@@ -22,13 +22,13 @@ def tokenize(snippet: str, label) -> List[Tuple[Any, Any]]:
             token_types.append(token.type)
     except Exception as e:
         pass
-    return tokens, token_types, label
+    return token_types
 
 
 def process_row(file, label):
     with open(file, "r") as f:
         snippet = f.read()
-    return tokenize(snippet, label)
+    return tokenize(snippet), label
 
 
 def main():
@@ -39,14 +39,14 @@ def main():
     args = argparser.parse_args()
     path_file = args.input
     text_dir = args.output
-    prefix = os.path.basename(path_file)
-    tokens_file = os.path.join(text_dir, f"{prefix}_tokens_corpus.txt")
+    prefix = os.path.basename(path_file).replace(".csv", "")
     token_types_file = os.path.join(text_dir, f"{prefix}_token_types_corpus.txt")
     labels_file = os.path.join(text_dir, f"{prefix}_labels.txt")
 
     logger.info(f"Load paths to actual data: {path_file}")
     df = pd.read_csv(path_file)
     total = len(df)
+    logger.info(f"Total number of files: {total}")
 
     # logger.info("Tokenizing...")
     results = []
@@ -59,12 +59,12 @@ def main():
             )
         )
 
+    logger.info(f"Number of observation tokenized: {len(results)}")
     logger.info("Saving corpus to text files...")
-    with open(tokens_file, "a") as tokens_f, open(token_types_file, "a") as token_types_f, open(
+    with open(token_types_file, "a") as token_types_f, open(
         labels_file, "a"
     ) as labels_f:
-        for tokens, token_types, label in results:
-            tokens_f.write(" ".join(tokens) + "\n")
+        for token_types, label in results:
             token_types_f.write(" ".join(token_types) + "\n")
             labels_f.write(label + "\n")
 

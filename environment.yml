@@ -8,6 +8,8 @@ dependencies:
   - mamba
   - pip
   - pytorch::pytorch=2.0.1
+  - pytorch::torchtext
+  - cudatoolkit=11.8.0
 
 # Non-standard section listing target platforms for conda-lock:
 platforms:

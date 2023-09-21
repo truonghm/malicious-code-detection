@@ -1,0 +1,11 @@
+python lib/codebert-bimodal/run_classifier.py \
+			--model_type roberta \
+			--do_predict \
+			--test_file test_set_new.jsonl \
+			--max_seq_length 200 \
+			--per_gpu_eval_batch_size 2 \
+			--data_dir ./data/exp \
+			--output_dir ./models/checkpoint-best-aver/ \
+			--encoder_name_or_path microsoft/codebert-base \
+			--pred_model_dir ./models/checkpoint-last/ \
+			--prediction_file .logs/predictions_codebert_bimodal.txt 

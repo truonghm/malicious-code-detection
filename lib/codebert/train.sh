@@ -6,8 +6,8 @@ PYTHONPATH=$(shell pwd) python run.py \
     --train_data_file=../data/exp/train_set.jsonl \
     --eval_data_file=../data/exp/valid_set.jsonl \
     --test_data_file=../data/exp/test_set.jsonl \
-    --num_train_epochs 20 \
-    --block_size 256 \
+    --num_train_epochs 5 \
+    --block_size 512 \
     --train_batch_size 8 \
     --eval_batch_size 16 \
     --learning_rate 2e-5 \

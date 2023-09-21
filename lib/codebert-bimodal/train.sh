@@ -1,0 +1,19 @@
+python lib/codebert-bimodal/run_classifier.py \
+			--model_type roberta \
+			--do_train \
+			--do_eval \
+			--eval_all_checkpoints \
+			--train_file train_set_new.jsonl \
+			--dev_file valid_set_new.jsonl \
+			--max_seq_length 200 \
+			--per_gpu_train_batch_size 16 \
+			--per_gpu_eval_batch_size 16 \
+			--learning_rate 1e-5 \
+			--num_train_epochs 20 \
+			--gradient_accumulation_steps 1 \
+			--warmup_steps 1000 \
+			--evaluate_during_training \
+			--data_dir ./data/exp \
+			--output_dir ./models \
+			--encoder_name_or_path microsoft/codebert-base \
+			--seed 123456 2>&1 | tee train.log

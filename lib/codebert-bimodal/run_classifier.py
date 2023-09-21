@@ -22,25 +22,29 @@ import logging
 import os
 import random
 
-
 import numpy as np
 import torch
-from torch.utils.data import DataLoader, SequentialSampler, RandomSampler, TensorDataset
+from torch.utils.data import DataLoader, RandomSampler, SequentialSampler, TensorDataset
 from torch.utils.data.distributed import DistributedSampler
+
 try:
     from torch.utils.tensorboard import SummaryWriter
 except:
     from tensorboardX import SummaryWriter
-from tqdm import tqdm, trange
-
-from transformers import (WEIGHTS_NAME, get_linear_schedule_with_warmup, AdamW,
-                          RobertaConfig,
-                          RobertaModel,
-                          RobertaTokenizer)
-
-from models import Model
-from utils import acc_and_f1, TextDataset
 import multiprocessing
+
+from model import Model
+from tqdm import tqdm, trange
+from transformers import (
+    WEIGHTS_NAME,
+    AdamW,
+    RobertaConfig,
+    RobertaModel,
+    RobertaTokenizer,
+    get_linear_schedule_with_warmup,
+)
+from utils import TextDataset, acc_and_f1
+
 cpu_cont = multiprocessing.cpu_count()
 
 logger = logging.getLogger(__name__)

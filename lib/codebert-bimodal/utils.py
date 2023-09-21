@@ -77,14 +77,17 @@ class TextDataset(Dataset):
         # json file: dict: idx, query, doc, code
         self.examples = []
         self.type = type
-        data=[]
-        with open(file_path, 'r') as f:
-            data = json.load(f)
-        if self.type == 'test':
-            for js in data:
-                js['label'] = 0
-        for js in data:
-            self.examples.append(convert_examples_to_features(js, tokenizer, args))
+        with open(file_path) as f:
+            for line in f:
+                js = json.loads(line.strip())
+                self.examples.append(convert_examples_to_features(js, tokenizer, args))
+        # with open(file_path, 'r') as f:
+        #     data = json.load(f)
+        # if self.type == 'test':
+        #     for js in data:
+        #         js['label'] = 0
+        # for js in data:
+        #     self.examples.append(convert_examples_to_features(js, tokenizer, args))
         if 'train' in file_path:
             for idx, example in enumerate(self.examples[:3]):
                 logger.info("*** Example ***")

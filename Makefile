@@ -11,6 +11,9 @@ download:
 count:
 	./scripts/utils/count_data.sh
 
+count2:
+	./scripts/utils/count_by_dir.sh
+
 ## Generate tree of data folder
 tree:
 	./scripts/utils/gen_tree.sh data

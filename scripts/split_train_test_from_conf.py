@@ -39,7 +39,7 @@ def traverse_path(path):
 
 def sample_files(good_files, bad_files, good_sample_size, bad_sample_size):
     import random
-
+    random.seed(42)
     good_sample = random.sample(good_files, good_sample_size)
     bad_sample = random.sample(bad_files, bad_sample_size)
 

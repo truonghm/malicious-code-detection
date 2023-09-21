@@ -39,6 +39,8 @@ tensorboard = "^2.14.0"
 transformers = {extras = ["torch"], version = "^4.33.1"}
 accelerate = "^0.23.0"
 datasets = "^2.14.5"
+duckdb = "^0.8.1"
+tabulate = "^0.9.0"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^7.4.0"

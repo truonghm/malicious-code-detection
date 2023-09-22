@@ -26,7 +26,7 @@ conda create --name m1 --file conda-linux-64.lock
 docker-compose up -d
 ```
 
-The Swagger page is available at [http://0.0.0.0:9771/documentation](http://0.0.0.0:9771/documentation).
+The Swagger page is available at [http://0.0.0.0:8501/documentation](http://0.0.0.0:8501/documentation).
 
 Example request body:
 

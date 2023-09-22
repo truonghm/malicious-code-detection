@@ -9,15 +9,15 @@ services:
     env_file:
       - ./api/.env
     ports:
-      - 9771:9771
+      - 8501:8501
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://0.0.0.0:9771"]
+      test: ["CMD", "curl", "-f", "http://0.0.0.0:8501"]
       timeout: 30s
       retries: 10
-    volumes: 
-      - ./api:/api
-      - ./src:/api/src
-      - ./models/codebert-bimodal/checkpoint-best-aver:/api/models
+    # volumes: 
+    #   - ./api:/api
+    #   - ./src:/api/src
+    #   - ./models/codebert-bimodal/checkpoint-best-aver:/api/models
     deploy:
       resources:
         reservations:

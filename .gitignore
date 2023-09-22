@@ -3,9 +3,7 @@ models/*
 **/models/*
 
 # report
-report/_extensions/*
-report/QTDublinIrish.otf
-report/*.tex
+report/*
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

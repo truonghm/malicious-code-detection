@@ -68,7 +68,7 @@ crawl:
 ## render report
 render:
 	quarto render ./report/index.qmd
-	python -m fitz join -o report/M1-INTERNSHIP-REPORT.pdf report/m1_internship_title_page.pdf report/_book/M1-INTERNSHIP-REPORT.pdf
+	python report/merge.py
 
 ## preview report
 preview:

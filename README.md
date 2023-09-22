@@ -53,3 +53,34 @@ Response:
 ./scripts/inference_codebert_unimodal.sh
 ./scripts/inference_codebert_bimodal.sh
 ```
+
+## Setting up remote machine on Vast.ai
+
+1. Use the `pytorch/pytorch:2.0.1-cuda11.7-cudnn8-devel` image
+2. SSH into the remote server, then install poetry and enable conda:
+
+```bash
+curl -sSL https://raw.githubusercontent.com/python-poetry/install.python-poetry.org/main/install-poetry.py | python3
+echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc
+
+# enable conda env
+conda init
+
+# restart terminal by sourcing bashrc
+source ~/.bashrc
+
+# export requirements.txt
+poetry export -f requirements.txt --without-hashes --output requirements.txt
+
+pip install -r requirements.txt
+
+# config git
+git config --global user.email "truong173@outlook.com"
+git config --global user.name "truonghm"
+
+# clone this repo
+git clone https://github.com/truonghm/malicious-code-detection.git
+cd malicious-code-detection
+```
+
+Then open the repo in a VSCode remote window.

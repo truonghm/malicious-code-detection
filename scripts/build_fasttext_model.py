@@ -1,7 +1,7 @@
 import argparse
 
 import fasttext
-from lib.utils.logging import logger
+from src.utils.logging import logger
 
 if __name__ == "__main__":
     argparser = argparse.ArgumentParser()

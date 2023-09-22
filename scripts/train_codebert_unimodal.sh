@@ -1,14 +1,14 @@
-PYTHONPATH=$(shell pwd) python run.py \
+python src/codebert-unimodal/run.py \
     --output_dir=./models \
     --tokenizer_name=microsoft/codebert-base \
     --model_name_or_path=microsoft/codebert-base \
     --do_train \
-    --train_data_file=../data/exp/train_set.jsonl \
-    --eval_data_file=../data/exp/valid_set.jsonl \
-    --test_data_file=../data/exp/test_set.jsonl \
-    --num_train_epochs 5 \
+    --train_data_file=data/exp/train_set.jsonl \
+    --eval_data_file=data/exp/valid_set.jsonl \
+    --test_data_file=data/exp/test_set.jsonl \
+    --num_train_epochs 20 \
     --block_size 512 \
-    --train_batch_size 8 \
+    --train_batch_size 16 \
     --eval_batch_size 16 \
     --learning_rate 2e-5 \
     --max_grad_norm 1.0 \

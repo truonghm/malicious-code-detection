@@ -9,7 +9,7 @@ import bs4
 import pandas as pd
 import pymongo
 import requests
-from lib.utils.logging import logger
+from src.utils.logging import logger
 
 TIMEOUT_SECS = 3
 shutdown = False  # Flag to signal workers to stop working

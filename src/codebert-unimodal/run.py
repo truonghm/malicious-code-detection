@@ -34,7 +34,7 @@ import shutil
 
 import numpy as np
 import torch
-from lib.codebert.model import Model
+from model import Model
 from torch.utils.data import DataLoader, Dataset, IterableDataset, RandomSampler, SequentialSampler, TensorDataset
 from torch.utils.data.distributed import DistributedSampler
 from tqdm import tqdm, trange
@@ -58,7 +58,9 @@ class InputFeatures(object):
         input_tokens,
         input_ids,
         label,
+        idx=None,
     ):
+        self.idx = idx
         self.input_tokens = input_tokens
         self.input_ids = input_ids
         self.label = label
@@ -72,7 +74,7 @@ def convert_examples_to_features(js, tokenizer, args):
     source_ids = tokenizer.convert_tokens_to_ids(source_tokens)
     padding_length = args.block_size - len(source_ids)
     source_ids += [tokenizer.pad_token_id] * padding_length
-    return InputFeatures(source_tokens, source_ids, js["label"])
+    return InputFeatures(source_tokens, source_ids, js["label"], js.get("idx", None))
 
 
 class TextDataset(Dataset):
@@ -270,7 +272,10 @@ def test(args, model, tokenizer):
     preds = logits.argmax(-1)
     with open(os.path.join(args.output_dir, "predictions.txt"), "w") as f:
         for example, pred in zip(eval_dataset.examples, preds):
-            f.write(str(pred) + "\n")
+            if example.idx is not None:
+                f.write(example.idx + "\t" + str(pred) + "\n")
+            else:
+                f.write(str(pred) + "\n")
 
 
 def main():
@@ -361,7 +366,7 @@ def main():
     # Evaluation
     results = {}
     if args.do_eval:
-        checkpoint_prefix = "checkpoint-best-acc/model.bin"
+        checkpoint_prefix = "checkpoint-best-acc-codebert/model.bin"
         output_dir = os.path.join(args.output_dir, "{}".format(checkpoint_prefix))
         model.load_state_dict(torch.load(output_dir))
         model.to(args.device)
@@ -371,7 +376,7 @@ def main():
             logger.info("  %s = %s", key, str(round(result[key], 4)))
 
     if args.do_test:
-        checkpoint_prefix = "checkpoint-best-acc/model.bin"
+        checkpoint_prefix = "checkpoint-best-acc-codebert/model.bin"
         output_dir = os.path.join(args.output_dir, "{}".format(checkpoint_prefix))
         model.load_state_dict(torch.load(output_dir))
         model.to(args.device)

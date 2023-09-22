@@ -1,12 +1,11 @@
-python run.py \
-    --output_dir=./saved_models \
+python src/codebert-unimodal/run.py \
+    --output_dir=./models \
     --tokenizer_name=microsoft/codebert-base \
     --model_name_or_path=microsoft/codebert-base \
-    --do_eval \
     --do_test \
-    --train_data_file=../dataset/train.jsonl \
-    --eval_data_file=../dataset/valid.jsonl \
-    --test_data_file=../dataset/test.jsonl \
+    --train_data_file=data/exp/train_set.jsonl \
+    --eval_data_file=data/exp/valid_set.jsonl \
+    --test_data_file=data/exp/test_set.jsonl \
     --num_train_epochs 1 \
     --block_size 64 \
     --train_batch_size 8 \

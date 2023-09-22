@@ -1,5 +1,25 @@
 # Malicious JavaScript Detection
 
+## Setting up
+
+This repository use `poetry` for dependency management and `conda` for environment management. To install `poetry`:
+
+```bash
+curl -sSL https://raw.githubusercontent.com/python-poetry/install.python-poetry.org/main/install-poetry.py | python3
+```
+
+Create a conda env (fresh) from `environment.yml`:
+
+```bash
+make env
+```
+
+Create a conda env from the lock file:
+
+```bash
+conda create --name m1 --file conda-linux-64.lock
+```
+
 ## Running the demo
 
 ```bash

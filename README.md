@@ -1,5 +1,6 @@
 # Malicious JavaScript Detection
 
+Demo here: [Azure Container Instance](http://js-detection.fdhwawfacbhfg5an.southeastasia.azurecontainer.io:8501/documentation/)
 ## Setting up
 
 This repository use `poetry` for dependency management and `conda` for environment management. To install `poetry`:

@@ -1,4 +1,4 @@
-python lib/codebert-bimodal/run_classifier.py \
+python lib/codebert_bimodal/run_classifier.py \
 			--model_type roberta \
 			--do_predict \
 			--test_file test_set_new.jsonl \

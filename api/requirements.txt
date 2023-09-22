@@ -1,0 +1,15 @@
+fastapi
+numpy
+pandas
+pydantic
+uvicorn
+fastapi-utils
+fastapi-cache2
+SQLAlchemy
+python-dotenv
+aioredis
+redis
+pymysql
+cryptography
+transformers[torch]==4.33.1
+scikit-learn==1.3.0

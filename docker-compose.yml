@@ -2,17 +2,26 @@ version: '3.9'
 
 services:
 
-  mongodb:
-    image: mongo:4.2.1
-    container_name: js-code
+  api:
+    build: ./api
     restart: unless-stopped
+    container_name: api
+    env_file:
+      - ./api/.env
     ports:
-      - 27017:27017
-    volumes: [ mongodbM1Data:/data/db, mongodbM1Config:/data/configdb ]
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: jscode
-      MONGO_INITDB_ROOT_PASSWORD: jscode
-
-volumes:
-  mongodbM1Data: null
-  mongodbM1Config: null
+      - 9771:9771
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://0.0.0.0:9771"]
+      timeout: 30s
+      retries: 10
+    volumes: 
+      - ./api:/api
+      - ./src:/api/src
+      - ./models/codebert-bimodal/checkpoint-best-aver:/api/models
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]

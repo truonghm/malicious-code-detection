@@ -1,4 +1,4 @@
-python src/codebert-unimodal/run.py \
+python src/codebert_unimodal/run.py \
     --output_dir=./models \
     --tokenizer_name=microsoft/codebert-base \
     --model_name_or_path=microsoft/codebert-base \

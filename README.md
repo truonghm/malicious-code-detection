@@ -1,9 +1,10 @@
 # Malicious JavaScript Detection
 
-Demo here: [Azure Container Instance](http://js-detection.fdhwawfacbhfg5an.southeastasia.azurecontainer.io:8501/documentation/)
+- Demo here: [Azure Container Instance](http://js-detection.fdhwawfacbhfg5an.southeastasia.azurecontainer.io:8501/documentation/)
+- Model here: [Hugging Face](https://huggingface.co/truonghm/malicious-js-detection)
 ## Setting up
 
-This repository use `poetry` for dependency management and `conda` for environment management. To install `poetry`:
+This repository uses `poetry` for dependency management and `conda` for environment management. To install `poetry`:
 
 ```bash
 curl -sSL https://raw.githubusercontent.com/python-poetry/install.python-poetry.org/main/install-poetry.py | python3
